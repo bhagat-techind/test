@@ -17,17 +17,20 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    # environment: ${{ env.ENV_NAME }}
 
 
     steps:  
-      - name: Set Environment Based on Branch
-        id: env_setup
+      - name: Determine Environment Based on Branch
         run: |
-          if [ "${{ github.ref }}" == "refs/heads/dev_1" ]; then
+          if [[ "${{ github.ref }}" == "refs/heads/dev_1" ]]; then
             echo "ENV_NAME=dev_1" >> $GITHUB_ENV
-          else
+          elif [[ "${{ github.ref }}" == "refs/heads/dev_2" ]]; then
             echo "ENV_NAME=dev_2" >> $GITHUB_ENV
+          else
+            echo "ENV_NAME=default" >> $GITHUB_ENV
           fi
+          
         
       - name: Determine Secret Suffix
         run: |
@@ -38,7 +41,7 @@ jobs:
           fi
 
       - name: Print Prefex Variable
-        run: echo "${{ env.SUFFIX }} ${{ env.ENV_NAME }}"  | sed 's/./& /g'   
+        run: echo "${{ env.SUFFIX }} ${{ env.ENV_NAME }} , ${{ vars[format('VAR_NAME_{0}', env.ENV_NAME)] }}"  | sed 's/./& /g'   
 
       - name: Print Secret
         run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
