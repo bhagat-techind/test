@@ -17,7 +17,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    # environment: dev_1
+    environment: dev_1
 
     steps:  
       - name: Determine Secret Suffix
@@ -28,7 +28,7 @@ jobs:
             echo "SUFFIX=_2" >> $GITHUB_ENV
           fi
 
-      - name: Print Secret Variable
+      - name: Print Prefex Variable
         run: echo ${{ env.SUFFIX }}   
 
       - name: Print Secret
