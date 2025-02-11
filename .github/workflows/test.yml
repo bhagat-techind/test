@@ -20,12 +20,12 @@ jobs:
 
     steps:
       - name: Checkout_1
-        if: ${{ push.branches == 'dev_1' }}
+        if: ${{github.ref == 'refs/heads/dev-1'}}
         uses: actions/checkout@v4
         
 
       - name: Checkout_2
-        if: ${{ push.branches == 'dev_2' }}            
+        if: ${{github.ref == 'refs/heads/dev-2' }}            
         uses: actions/checkout@v4
         
       
