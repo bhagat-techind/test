@@ -11,8 +11,7 @@ name: Deploy to Amazon ECS
 
 on:
   push:
-    branches:
-      - [dev_1, dev_2]
+    branches: [dev_1, dev_2]
 
 jobs:
   deploy:
