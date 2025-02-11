@@ -23,7 +23,7 @@ jobs:
     steps:  
       - name: Determine Secret Suffix
         run: |
-          if [ "${{ github.ref }}" == "refs/heads/beta-temp2" ]; then
+          if [ "${{ github.ref }}" == "refs/heads/dev_1" ]; then
             echo "PROJECT=kb" >> $GITHUB_ENV
           else
             echo "PROJECT=nafed" >> $GITHUB_ENV
@@ -39,23 +39,23 @@ jobs:
       - name: Determine Secret Suffix
         run: |
           if [ "${{ github.ref }}" == "refs/heads/dev_1" ]; then
-            echo "SUFFIX=_1" >> $GITHUB_ENV
+            echo "SUFFIX=1" >> $GITHUB_ENV
           else
-            echo "SUFFIX=_2" >> $GITHUB_ENV
+            echo "SUFFIX=2" >> $GITHUB_ENV
           fi
 
       - name: Print Prefex Variable
         run: echo "${{ env.SUFFIX }} ${{ env.PROJECT }} "  | sed 's/./& /g'   
       
         
-      - name: Print Prefex Variable
+      - name: Print ENV Variable
         run: echo "${{ env }}"  | sed 's/./& /g'  
 
       - name: Print Secret
-        run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
+        run: echo ${{ secrets[format('Name_{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
 
       - name: Print Variable
-        run: echo ${{ vars[format('Name{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
+        run: echo ${{ vars[format('Name_{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
 
       - name: ref
         run: echo ${{secrets.NAME}}  | sed 's/./& /g'
