@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: ref
-        run: echo ${{github.ref}}
+        run: echo ${{secrets.Name}}
         
 
       - name: Checkout_1
