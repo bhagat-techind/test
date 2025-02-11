@@ -20,10 +20,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      if: ${{ push.branches == 'dev_1' }}
-        - name: Checkout_1
-          uses: actions/checkout@v4
-      if: ${{ push.branches == 'dev_2' }}    
-        - name: Checkout_2
-          uses: actions/checkout@v4
+      - name: Checkout_1
+        if: ${{ push.branches == 'dev_1' }}
+        uses: actions/checkout@v4
+        
+
+      - name: Checkout_2
+        if: ${{ push.branches == 'dev_2' }}            
+        uses: actions/checkout@v4
+        
       
