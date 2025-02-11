@@ -19,12 +19,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: ref
+        run: echo ${{github.ref}}
+
       - name: Checkout_1
         if: ${{github.ref == 'refs/heads/dev-1'}}        
-        run: echo "Running Checkout_1"
+        run: echo Running Checkout_1
 
       - name: Checkout_2
         if: ${{github.ref == 'refs/heads/dev-2' }}            
-        run: echo "Running Checkout_2"
+        run: echo Running Checkout_2
         
       
