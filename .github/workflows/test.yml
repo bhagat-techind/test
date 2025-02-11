@@ -36,8 +36,7 @@ jobs:
             echo "AWS_REGION=ap-south-1" >> $GITHUB_ENV
             echo "ECR_REPOSITORY=${{ env.SUFFIX }}" >> $GITHUB_ENV
             echo "ECS_SERVICE=${{ env.SUFFIX }}-ecs-service" >> $GITHUB_ENV           
-            echo "ECS_CLUSTER=${{ env.SUFFIX }}-cluster" >> $GITHUB_ENV 
-            echo "ECS_TASK_DEFINITION: ./.github/${{ env.PROJECT }}_ecs.json " >> $GITHUB_ENV 
+            echo "ECS_CLUSTER=${{ env.SUFFIX }}-cluster" >> $GITHUB_ENV             
             echo "CONTAINER_NAME=${{ env.SUFFIX }}-api-container" >> $GITHUB_ENV        
     
       - name: Determine Secret Suffix
