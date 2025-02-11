@@ -17,9 +17,20 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: dev_1
+    # environment: dev_1
 
-    steps:
+    steps:  
+      - name: Determine Secret Suffix
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/dev_1" ]; then
+            echo "SUFFIX=_1" >> $GITHUB_ENV
+          else
+            echo "SUFFIX=_2" >> $GITHUB_ENV
+          fi
+
+      - name: Print Secret
+        run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}    
+        
       - name: ref
         run: echo ${{secrets.NAME}}
       - name: ref
