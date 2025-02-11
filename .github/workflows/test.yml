@@ -30,12 +30,12 @@ jobs:
 
     steps:
       - name: ref
-        run: echo ${{secrets.Name}}
+        run: echo ${{secrets.NAME}}
         
 
       - name: Checkout_1
         if: ${{github.ref == 'refs/heads/dev_1'}}        
-        run: echo ${{secrets.Name}}
+        run: echo ${{secrets.NAME}}
         id: asdsad
         
 
