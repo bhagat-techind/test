@@ -25,16 +25,20 @@ jobs:
         run: |
           if [ "${{ github.ref }}" == "refs/heads/dev_1" ]; then
             echo "PROJECT=kb" >> $GITHUB_ENV
+            echo "SUFFIX=kendriyabhandar" >> $GITHUB_ENV
           else
             echo "PROJECT=nafed" >> $GITHUB_ENV
+            echo "SUFFIX=nafed" >> $GITHUB_ENV
           fi
 
       - name: Set Required ENV
         run: |
-          echo "AWS_REGION=ap-south-1" >> $GITHUB_ENV
-          echo "ECR_REPOSITORY=${{ env.PROJECT }}" >> $GITHUB_ENV
-          echo "ECS_SERVICE=${{ env.PROJECT }}-ecs-service" >> $GITHUB_ENV
-          echo "ECS_CLUSTER=${{ env.PROJECT }}-cluster" >> $GITHUB_ENV          
+            echo "AWS_REGION=ap-south-1" >> $GITHUB_ENV
+            echo "ECR_REPOSITORY=${{ env.SUFFIX }}" >> $GITHUB_ENV
+            echo "ECS_SERVICE=${{ env.SUFFIX }}-ecs-service" >> $GITHUB_ENV           
+            echo "ECS_CLUSTER=${{ env.SUFFIX }}-cluster" >> $GITHUB_ENV 
+            echo "ECS_TASK_DEFINITION: ./.github/${{ env.PROJECT }}_ecs.json " >> $GITHUB_ENV 
+            echo "CONTAINER_NAME=${{ env.SUFFIX }}-api-container" >> $GITHUB_ENV        
     
       - name: Determine Secret Suffix
         run: |
