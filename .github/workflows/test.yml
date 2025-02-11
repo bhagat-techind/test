@@ -17,11 +17,11 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: ${{ env.ENV_NAME }}
 
 
     steps:  
-      - name: Determine Environment Name Based on Branch
+      - name: Set Environment Based on Branch
+        id: env_setup
         run: |
           if [ "${{ github.ref }}" == "refs/heads/dev_1" ]; then
             echo "ENV_NAME=dev_1" >> $GITHUB_ENV
