@@ -28,9 +28,12 @@ jobs:
             echo "SUFFIX=_2" >> $GITHUB_ENV
           fi
 
+      - name: Print Secret Variable
+        run: echo ${{ env.SUFFIX }}   
+
       - name: Print Secret
         run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}    
-        
+
       - name: ref
         run: echo ${{secrets.NAME}}
       - name: ref
