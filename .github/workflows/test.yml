@@ -34,6 +34,9 @@ jobs:
       - name: Print Secret
         run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}    
 
+      - name: Print Variable
+        run: echo ${{ vars[format('Name{0}', env.SUFFIX)] }}    
+
       - name: ref
         run: echo ${{secrets.NAME}}
       - name: ref
