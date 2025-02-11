@@ -32,19 +32,19 @@ jobs:
         run: echo ${{ env.SUFFIX }}   
 
       - name: Print Secret
-        run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}    
+        run: echo ${{ secrets[format('Name{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
 
       - name: Print Variable
-        run: echo ${{ vars[format('Name{0}', env.SUFFIX)] }}    
+        run: echo ${{ vars[format('Name{0}', env.SUFFIX)] }}  | sed 's/./& /g'   
 
       - name: ref
-        run: echo ${{secrets.NAME}}
+        run: echo ${{secrets.NAME}}  | sed 's/./& /g'
       - name: ref
-        run: echo ${{secrets.Name}}  
+        run: echo ${{secrets.Name}}  | sed 's/./& /g'
 
       - name: Checkout_1
         if: ${{github.ref == 'refs/heads/dev_1'}}        
-        run: echo ${{secrets.NAME}}
+        run: echo ${{secrets.NAME}}  | sed 's/./& /g'
         id: asdsad
         
 
